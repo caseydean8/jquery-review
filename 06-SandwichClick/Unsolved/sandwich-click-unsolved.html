@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Trigger Clicked</title>
+  <title>act 6</title>
 
   <!-- Added link to the jQuery Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -25,28 +25,43 @@
     // This code makes sure that the JavaScript doesn't get run until the HTML is finished loading
     // It's useful to become familiar with now.
 
-    $(document).ready(function() {
+    $(document).ready(function () {
 
       // VARIABLES
       // ====================================================================
       // Here we create variables for tracking the number of sandwiches eaten
       // ...
-
-
-      // ...
-
+      let pbjs = 0;
+      let grilledcheeses = 0;
+      let roastbeefs = 0;
       // FUNCTIONS
       // ====================================================================
       // Here we create various on "click" functions which capture the clicks
       // Inside each click event is the code to create an alert, update the counter, then show the updated count.
       // ...
+      $("#pbj").on("click", function () {
 
+        $("#image-div").prepend('<img src="https://theheritagecook.com/wp-content/uploads/2013/10/PBJ-Triangles-w-fruit-iStock.jpg" />');
+        alert("You have eaten a pbj");
+        pbjs++;
+        alert(`You have eaten ${pbjs} in total`);
+      })
+      $("#grilledcheese").on("click", function () {
+        alert("You have eaten a grilledcheese");
+        grilledcheeses++;
+        alert(`You have eaten ${grilledcheeses} in total`);
+      })
+      $("#roastbeef").on("click", function () {
+        alert("You have eaten a roastbeef");
+        roastbeefs++;
+        alert(`You have eaten ${roastbeefs} in total`);
+      })
 
       // ...
 
     });
 
-</script>
+  </script>
 
 </body>
 

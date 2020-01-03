@@ -40,18 +40,22 @@
       // Inside each click event is the code to create an alert, update the counter, then show the updated count.
       // ...
       $("#pbj").on("click", function () {
-
+        $("#image-div").empty();
         $("#image-div").prepend('<img src="https://theheritagecook.com/wp-content/uploads/2013/10/PBJ-Triangles-w-fruit-iStock.jpg" />');
         alert("You have eaten a pbj");
         pbjs++;
         alert(`You have eaten ${pbjs} in total`);
       })
       $("#grilledcheese").on("click", function () {
+        $("#image-div").empty();
+        $("#image-div").prepend('<img src="https://www.weewatch.com/wp-content/uploads/2016/04/grilled-cheese-_-sex.jpg" />');
         alert("You have eaten a grilledcheese");
         grilledcheeses++;
         alert(`You have eaten ${grilledcheeses} in total`);
       })
       $("#roastbeef").on("click", function () {
+        $("#image-div").empty();
+        $("#image-div").prepend('<img src="https://images-gmi-pmc.edge-generalmills.com/b5571aea-1815-4abe-8537-e1b3c517327c.jpg" />');
         alert("You have eaten a roastbeef");
         roastbeefs++;
         alert(`You have eaten ${roastbeefs} in total`);

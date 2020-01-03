@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Trigger Random</title>
-  
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Added link to the jQuery Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -12,17 +13,26 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
 </head>
+
 <body>
 
   <div class="jumbotron">
 
     <h1 class="text-center">Generate a Random Number!</h1>
+    <h2 class="text-center">press button on right for a number between 1 and 1000</h2>
+    <h2 class="text-center">press button on left for 9 lotter numbers</h2>
 
     <div class="text-center">
 
       <!-- Here we have our button for generating random numbers (#random-button) -->
-      <button id="random-button" class="btn btn-primary btn-lg"><h1><span class="fa fa-question"></span></h1></button>
-      
+      <button id="random-button" class="btn btn-primary btn-lg">
+        <h1><span class="fa fa-question"></span></h1>
+      </button>
+      <button id="lottery-button" class="btn btn-primary btn-lg">
+        <h1><span class="fa fa-question"></span></h1>
+      </button>
+
+
     </div>
 
   </div>
@@ -32,20 +42,31 @@
 
   <script type="text/javascript">
 
-    $(document).ready(function() {
+    $(document).ready(function () {
 
       // CREATE THE MISSING CODE HERE. Your code should add content to the random-number div.
       // Random number between 1 and 1000
+      // For lottery generator, nine numbers between 0 and 69
+      // Math.floor((Math.random() * 69) + 1) generates random between 1 and 69
+      // Math.floor(Math.random() * 69) between 0 and 69
       $("#random-button").on("click", () => {
         // let num = Math.random();
+        $("#random-number").empty();
         $("#random-number").html(Math.floor((Math.random() * 1000) + 1));
       })
 
       // ...
-
+      $("#lottery-button").on("click", () => {
+        $("#random-number").empty();
+        for (let i = 0; i < 9; i++) {
+          let lotNum = Math.floor(Math.random() * 69);
+          $("#random-number").append(`${lotNum} `);
+        }
+      });
     });
 
   </script>
-  
+
 </body>
+
 </html>

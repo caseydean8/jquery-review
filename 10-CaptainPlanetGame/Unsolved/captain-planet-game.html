@@ -63,7 +63,23 @@
               <button class="btn btn-dark btn-lg clone-button">
                 <span class="fa fa-clone"></span> Clone</button>
               <button class="btn btn-dark btn-lg remove-button">
-                <span class="fa fa-clone"></span> Remove</button>
+                <span class="fa fa-minus-circle"></span> Remove</button>
+              <button class="btn btn-dark btn-lg clear-button">
+                <span class="fa fa-times"></span> Clear All</button>
+            </div>
+          </div>
+        </div>
+        <!-- fire controls -->
+        <div id="sizeControls" class="card">
+          <h4 class="card-header">Superpowers - Fire!</h4>
+          <div class="card-body">
+            <div class="text-center">
+              <button class="btn btn-dark btn-lg fire-button">
+                <span class="fa fa-firefox fa-pulse"></span> Fire ball!</button>
+              <!-- <button class="btn btn-dark btn-lg remove-button"> -->
+                <!-- <span class="fa fa-minus-circle"></span> Remove</button>
+              <button class="btn btn-dark btn-lg clear-button">
+                <span class="fa fa-times"></span> Clear All</button> -->
             </div>
           </div>
         </div>
@@ -172,6 +188,16 @@
       });
       $(".remove-button").on("click", () => {
         $(".remove-clone:last-child").remove();
+      });
+      $(".clear-button").on("click", () => {
+        $(".remove-clone").remove();
+      });
+
+      // Fire Buttons
+      $(".fire-button").on("click", () => {
+        const fireDiv = $('<div class="col-lg-6 fire" style="height: 300px;">');
+        $(".clone").after(fireDiv);
+        $(fireDiv).append('<img src="assets/fireball.gif" style="position:absolute; top:50px; left: 80px; z-index: -20; height: 300px"/>');
       })
 
       // Stretch Buttons

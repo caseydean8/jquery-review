@@ -54,13 +54,27 @@
             </div>
           </div>
         </div>
+
+        <!-- Controls (Clone)-->
+        <div id="sizeControls" class="card">
+          <h4 class="card-header">Superpowers - Clone!</h4>
+          <div class="card-body">
+            <div class="text-center">
+              <button class="btn btn-dark btn-lg clone-button">
+                <span class="fa fa-clone"></span> Clone</button>
+              <button class="btn btn-dark btn-lg remove-button">
+                <span class="fa fa-clone"></span> Remove</button>
+            </div>
+          </div>
+        </div>
+
         <!-- Stretch/relax -->
         <div id="sizeControls" class="card">
           <h4 class="card-header">Superpowers - Stretch!</h4>
           <div class="card-body">
             <div class="text-center">
               <!-- <button class="btn btn-dark btn-lg regular-button"> -->
-                <!-- <span class="fa fa-ok"></span> Normal</button> -->
+              <!-- <span class="fa fa-ok"></span> Normal</button> -->
               <button class="btn btn-primary btn-lg stretch-button">
                 <span class="fa fa-plus"></span> Stretch</button>
               <button class="btn btn-danger btn-lg relax-button">
@@ -105,10 +119,11 @@
 
       <!-- Right Card (Captain Planet Hero)-->
       <div class="col-lg-6">
-
-        <!-- Captain Planet Image -->
-        <img src="assets/captain-planet.jpg" alt="" class="img captain-planet"
-          style="position:absolute; top:50px; left: 80px; z-index: -20; height: 300px">
+        <div class="clone" style="height: 300px;">
+          <!-- Captain Planet Image -->
+          <img src="assets/captain-planet.jpg" alt="" class="img captain-planet"
+            style="position:absolute; top:50px; left: 80px; z-index: -20; height: 300px">
+        </div>
       </div>
     </div>
   </div>
@@ -149,12 +164,22 @@
         captainPlanet.animate({ height: "100px" });
       });
 
+      // Clone Buttons
+      $(".clone-button").on("click", () => {
+        const newDiv = $('<div class="col-lg-6 remove-clone" style="height: 300px;">');
+        $(".clone").after(newDiv);
+        $(newDiv).append('<img src="assets/captain-planet.jpg" style="position:absolute; top:50px; left: 80px; z-index: -20; height: 300px"/>');
+      });
+      $(".remove-button").on("click", () => {
+        $(".remove-clone:last-child").remove();
+      })
+
       // Stretch Buttons
       $(".stretch-button").on("click", () => {
         captainPlanet.animate({ width: "700px" })
       });
       $(".relax-button").on("click", () => {
-        captainPlanet.animate({width: "450px"})
+        captainPlanet.animate({ width: "450px" })
       });
 
       // Visibility Buttons

@@ -31,6 +31,8 @@
           <span class="fa fa-music"></span> Play Theme!</button>
         <button class="btn btn-dark btn-xs pause-button">
           <span class="fa fa-pause"></span> Pause Song</button>
+        <button class="btn btn-danger btn-xs laugh-button">
+          <span class="fa fa-smile-o fa-spin"></span> Laugh</button>
       </div>
 
     </div>
@@ -52,13 +54,13 @@
             </div>
           </div>
         </div>
-
+        <!-- Stretch/relax -->
         <div id="sizeControls" class="card">
           <h4 class="card-header">Superpowers - Stretch!</h4>
           <div class="card-body">
             <div class="text-center">
-              <button class="btn btn-dark btn-lg regular-button">
-                <span class="fa fa-ok"></span> Normal</button>
+              <!-- <button class="btn btn-dark btn-lg regular-button"> -->
+                <!-- <span class="fa fa-ok"></span> Normal</button> -->
               <button class="btn btn-primary btn-lg stretch-button">
                 <span class="fa fa-plus"></span> Stretch</button>
               <button class="btn btn-danger btn-lg relax-button">
@@ -121,6 +123,8 @@
       // Gets Link for Theme Song
       var audioElement = document.createElement("audio");
       audioElement.setAttribute("src", "assets/captainplanet24.mp3");
+      const audioLaugh = document.createElement("audio");
+      audioLaugh.setAttribute("src", "assets/Evil_Laugh.mp3");
 
       // Theme Button
       $(".theme-button").on("click", function () {
@@ -129,6 +133,10 @@
       $(".pause-button").on("click", function () {
         audioElement.pause();
       });
+
+      $(".laugh-button").on("click", () => {
+        audioLaugh.play();
+      })
 
       // Size Buttons
       $(".normal-button").on("click", function () {

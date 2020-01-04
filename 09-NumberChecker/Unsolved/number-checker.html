@@ -65,11 +65,20 @@
             // Here we create the on click event that gets the user's pick
             $(".btn-choice").on("click", function() {
 
-              console.log("You clicked a button!!");
-
+              // console.log("You clicked a button!!");
+              $("#result").empty();
               // Add code to have the computer guess a random number between 1 and 4
+              let computerPick = Math.floor((Math.random() * 4) + 1).toString();
+              $("#computer-pick").text(computerPick);
               // Then determine which button was clicked
+              let userPick = $(this).val();
+              console.log(userPick);
               // Compare the computer and user guess
+              if (computerPick === userPick) {
+                $("#result").text("you win!");
+              } else {
+                $("#result").text("you guessed incorrectly sir!");
+              }
               // Inform the user if the've guessed correctly or incorrectly
 
             });

@@ -76,10 +76,10 @@
             <div class="text-center">
               <button class="btn btn-dark btn-lg fire-button">
                 <span class="fa fa-firefox fa-pulse"></span> Fire ball!</button>
-              <!-- <button class="btn btn-dark btn-lg remove-button"> -->
-                <!-- <span class="fa fa-minus-circle"></span> Remove</button>
-              <button class="btn btn-dark btn-lg clear-button">
-                <span class="fa fa-times"></span> Clear All</button> -->
+              <button class="btn btn-dark btn-lg water-button">
+                <span class="fa fa-bolt"></span> Water Spout</button>
+              <!-- <button class="btn btn-dark btn-lg clear-button"> -->
+                <!-- <span class="fa fa-times"></span> Clear All</button>  -->
             </div>
           </div>
         </div>
@@ -198,7 +198,12 @@
         const fireDiv = $('<div class="col-lg-6 fire" style="height: 300px;">');
         $(".clone").after(fireDiv);
         $(fireDiv).append('<img src="assets/fireball.gif" style="position:absolute; top:50px; left: 80px; z-index: -20; height: 300px"/>');
-      })
+      });
+      $(".water-button").on("click", () => {
+        const waterDiv = $('<div class="col-lg-6 fire" style="height: 300px;">');
+        $(".clone").after(waterDiv);
+        $(waterDiv).append('<img src="https://66.media.tumblr.com/374c9aef47dae111d7aed5a1eb62c702/tumblr_o3nvlkkYeH1toamj8o2_r1_400.gif" style="position:absolute; top:50px; left: 80px; z-index: -20; height: 300px"/>');
+      });
 
       // Stretch Buttons
       $(".stretch-button").on("click", () => {

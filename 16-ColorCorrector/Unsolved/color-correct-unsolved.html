@@ -75,13 +75,14 @@
       function randColor() {
 
         // Set random word
-
-
+        var color = colors[Math.floor(Math.random()*colors.length)];
+        // var color = _.sample(colors);
+        console.log(color);
         // Set random word color
 
 
       }
-
+      // randColor()
       // This function creates the actual "game" logic.
       function createColorPicker() {
 

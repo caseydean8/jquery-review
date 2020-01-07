@@ -72,31 +72,21 @@
         "coral",
         "black"
       ];
-
+      console.log(colors);
+      console.log(`-------original array------`)
       // This function sets a random color "word" and a random set of colors "visuals"
       function randColor() {
 
         // Set random word
         targetColor = colors[Math.floor(Math.random() * colors.length)];
-        // var color = _.sample(colors);
-        // var color = colors[_.random(colors.length-1)];
-        console.log(targetColor);
+        // console.log(targetColor);
         // Set random word color
-        targetColorOfText = colorsOfText[Math.floor(Math.random() * colorsOfText.length)];
-
+        targetColorOfText = colors[Math.floor(Math.random() * colors.length)];
+        // console.log(targetColorOfText);
       }
-      randColor()
+      // randColor()
       // This function creates the actual "game" logic.
       function createColorPicker() {
-
-        // Shuffle color array
-        // Attempt one
-        // function shuffleArray(array) {
-        //   for (let i = array.length - 1; i > 0; i--) {
-        //     const j = Math.floor(Math.random() * (i + 1));
-        //     [array[i], array[j]] = [array[j], array[i]];
-        //   }
-        // };
 
         function shuffle(array) {
           var currentIndex = array.length, temporaryValue, randomIndex;
@@ -119,26 +109,32 @@
 
         let shuffled = shuffle(colors);
         // console.log(shuffled);
-        colorsOfText = shuffled;
-        console.log(colorsOfText);
+        // colorsOfText = shuffled;
+        // console.log(colorsOfText);
 
         // Push to text color array
-        // colorsOfText.push(shuffled);
-        // console.log(colorsOfText);
+        colorsOfText = colorsOfText.concat(shuffled);
+        console.log(colorsOfText);
 
         // Shuffle text color array
         let shuffledTextColor = shuffle(colorsOfText);
         console.log(shuffledTextColor);
         // console.log(colorsOfText);
-
+        console.log(colors);
         // Loop through all colors in the array
-        for (let color of colors) {
-        // Create element to hold word
-        const word = $('<li>');
-        // Output a word
-        $(word).text(color);
-        $(".list-unstyled").append(word);
-        // Make word a random color
+        for (let i = 0; i < colors.length; i++) {
+          // Create element to hold word
+          const word = $('<li>');
+          // Output a word
+          $(word).text(colors[i]);
+
+          // Make word a random color
+          let cssColor = shuffledTextColor[i];
+          console.log(cssColor);
+          $(word).css("color", cssColor);
+
+          // $(word).attr(`style="color: ${targetColorOfText};"`);
+          $(".list-unstyled").append(word);
         }
       }
       createColorPicker();

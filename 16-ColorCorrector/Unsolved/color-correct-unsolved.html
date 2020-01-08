@@ -47,10 +47,15 @@
   </div>
 
   <script>
-    // var underscore = require("underscore");
     // JavaScript function that wraps everything
-    $(document).ready(function () {
-      // var _ = import.underscore;
+    // $(handler)
+    // $(document).ready(handler)
+    // $("document").ready(handler)
+    // $("img").ready(handler)
+    // $().ready(handler) 
+    // All of the above work, but only the first is recommended, all others are deprecated
+
+    $(function () {
       // Array for word colors
       var colorsOfText = [];
 
@@ -72,21 +77,19 @@
         "coral",
         "black"
       ];
-      console.log(colors);
-      console.log(`-------original array------`)
+
       // This function sets a random color "word" and a random set of colors "visuals"
       function randColor() {
 
         // Set random word
         targetColor = colors[Math.floor(Math.random() * colors.length)];
-        console.log(targetColor);
         // Set random word color
         targetColorOfText = colors[Math.floor(Math.random() * colors.length)];
-        // console.log(targetColorOfText);
+
         $("#rand-target-color").text(targetColor);
         $("#rand-target-color").css("color", targetColorOfText);
       }
-      randColor()
+
       // This function creates the actual "game" logic.
       function createColorPicker() {
 
@@ -110,19 +113,13 @@
         }
 
         let shuffled = shuffle(colors);
-        // console.log(shuffled);
-        // colorsOfText = shuffled;
-        // console.log(colorsOfText);
 
         // Push to text color array
         colorsOfText = colorsOfText.concat(shuffled);
-        console.log(colorsOfText);
 
         // Shuffle text color array
         let shuffledTextColor = shuffle(colorsOfText);
-        console.log(shuffledTextColor);
-        // console.log(colorsOfText);
-        console.log(colors);
+
         // Loop through all colors in the array
         for (let i = 0; i < colors.length; i++) {
           // Create element to hold word
@@ -133,29 +130,36 @@
           $(word).addClass("click-me");
           // Make word a random color
           let cssColor = shuffledTextColor[i];
-          console.log(cssColor);
+          // console.log(cssColor);
           $(word).css("color", cssColor);
 
           // $(word).attr(`style="color: ${targetColorOfText};"`);
           $(".list-unstyled").append(word);
         }
       }
-      createColorPicker();
+
       // Clear the divs and arrays upon each round.
       function clear() {
-
+        $("#rand-target-color").empty();
+        $(".list-unstyled").empty();
+        colorsOfText = [];
+        reset();
       }
 
       // Function for resetting colors and setting new colors.
       function reset() {
-
+        randColor();
+        createColorPicker();
+        clicker();
       }
 
       // Get id of element clicked by user
-      $(".click-me").click(function (event) {
-        console.log($(this).attr("id"));
-        ($(this).attr("id") === targetColorOfText) ? alert("You Win!") : alert("You Lose");
-      });
+      function clicker() {
+        $(".click-me").click(function (event) {
+          ($(this).attr("id") === targetColorOfText) ? alert("You Win!") : alert("You Lose");
+          clear();
+        })
+      }
 
       // Run game
       reset();

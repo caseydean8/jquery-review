@@ -31,7 +31,7 @@
         <h3 class="card-title">
 
           <!-- Create random target color -->
-          <span id="rand-target-color">targetColor
+          <span id="rand-target-color">
           </span>
 
         </h3>
@@ -79,12 +79,14 @@
 
         // Set random word
         targetColor = colors[Math.floor(Math.random() * colors.length)];
-        // console.log(targetColor);
+        console.log(targetColor);
         // Set random word color
         targetColorOfText = colors[Math.floor(Math.random() * colors.length)];
         // console.log(targetColorOfText);
+        $("#rand-target-color").text(targetColor);
+        $("#rand-target-color").css("color", targetColorOfText);
       }
-      // randColor()
+      randColor()
       // This function creates the actual "game" logic.
       function createColorPicker() {
 
@@ -127,7 +129,8 @@
           const word = $('<li>');
           // Output a word
           $(word).text(colors[i]);
-
+          $(word).attr("id", colors[i]);
+          $(word).addClass("click-me");
           // Make word a random color
           let cssColor = shuffledTextColor[i];
           console.log(cssColor);
@@ -149,8 +152,9 @@
       }
 
       // Get id of element clicked by user
-      $("#color-picker").click(function (event) {
-
+      $(".click-me").click(function (event) {
+        console.log($(this).attr("id"));
+        ($(this).attr("id") === targetColorOfText) ? alert("You Win!") : alert("You Lose");
       });
 
       // Run game

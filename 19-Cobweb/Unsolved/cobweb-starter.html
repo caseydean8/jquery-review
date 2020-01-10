@@ -15,6 +15,24 @@
 
   <h1>Open the console to see the action!</h1>
 
+  <p>var theCobWeb = {<br>
+    biggestWeb: {<br>
+    item: "comb",<br>
+    biggerWeb: {<br>
+    items: ["glasses", "paperclip", "bubblegum"],<br>
+    smallerWeb: {<br>
+    item: "toothbrush",<br>
+    tinyWeb: {<br>
+    items: ["toenails", "lint", "wrapper", "homework"]<br>
+    }<br>
+    }<br>
+    },
+    otherBigWeb: {
+    item: "headphones"
+    }
+    }
+    };</p>
+
   <script>
 
     // Here we are given a cob-web of items. Let's dig in and grab the items we need.
@@ -36,26 +54,120 @@
       }
     };
 
-// Create the code necessary to print each of the following lines using the object above:
-console.log(`I found my ${theCobWeb.biggestWeb.biggerWeb.items[0]}`)
-// "I found my glasses!"
-console.log(`I found my ${theCobWeb.biggestWeb.biggerWeb.smallerWeb.item}`)
-// "I found my toothbrush!"
-console.log(`I found my ${theCobWeb.biggestWeb.otherBigWeb.item}`)
-// "I found my headphones!"
-console.log(`I found my ${theCobWeb.biggestWeb.biggerWeb.smallerWeb.tinyWeb.items[3]}`)
-// "I found my homework!"
+    // Create the code necessary to print each of the following lines using the object above:
+    console.log(`I found my ${theCobWeb.biggestWeb.biggerWeb.items[0]}`)
+    // "I found my glasses!"
+    console.log(`I found my ${theCobWeb.biggestWeb.biggerWeb.smallerWeb.item}`)
+    // "I found my toothbrush!"
+    console.log(`I found my ${theCobWeb.biggestWeb.otherBigWeb.item}`)
+    // "I found my headphones!"
+    console.log(`I found my ${theCobWeb.biggestWeb.biggerWeb.smallerWeb.tinyWeb.items[3]}`)
+    // "I found my homework!"
+    console.log(theCobWeb.biggestWeb);
+    console.log(Object.values(theCobWeb));
 
+    // Bonus (Extra Hard): It's impossible to complete this in the allotted time. Take this home as a challenge and bring it back to your TA/Instructor for the solution.
+    // Create a function using JavaScript (NOT jQuery) for which you can pass the name of an item and theCobWeb
+    // and the function returns the smallest web it was found inside of.
+    // Your code should work if someone were to modify theCobWeb.  
+    //  for example if you gave your program 
+    //    comb it should give back biggestWeb
+    //    toenails it should give back tinyWeb
+    //    headphones it should give back otherBigWeb
+    // HINT: you should use recursion
+    function smallestWeb(item, obj) {
 
-// Bonus (Extra Hard): It's impossible to complete this in the allotted time. Take this home as a challenge and bring it back to your TA/Instructor for the solution.
-// Create a function using JavaScript (NOT jQuery) for which you can pass the name of an item and theCobWeb
-// and the function returns the smallest web it was found inside of.
-// Your code should work if someone were to modify theCobWeb.  
-//  for example if you gave your program 
-//    comb it should give back biggestWeb
-//    toenails it should give back tinyWeb
-//    headphones it should give back otherBigWeb
-// HINT: you should use recursion
+      for (let k in obj) {
+        if (typeof obj[k] === "object") {
+          // Recursion start
+          smallestWeb()
+        } else {
+          // Base case. 1. what is my base case? 
+          console.log(obj[k])
+        }
+      }
+    }
+
+    // smallestWeb("comb", theCobWeb)
+
+    function printAllVals(item, obj) {
+      for (let k in obj) {
+        if (typeof obj[k] === "object") {
+          printAllVals(item, obj[k])
+        } else {
+          // base case, stop recurring
+          console.log(obj[k]);
+        }
+      }
+    }
+
+    printAllVals("comb", theCobWeb);
+
+    // Recursive factorial finder
+
+    function factorial(num) {
+      if (num === 1) {
+        result = 1
+      } else {
+        recursiveCallResult = factorial(num - 1);
+        result = num * recursiveCallResult
+      }
+      return result
+    }
+
+    // console.log(factorial(5));
+
+    function getPath(obj, value) {
+      if (obj.constructor !== Object) {
+        throw new TypeError('getPath() can only operate on object with Object as constructor');
+      }
+      var path = [];
+      var found = false;
+
+      function search(haystack) {
+        for (var key in haystack) {
+          path.push(key);
+          if (haystack[key] === value) {
+            found = true;
+            break;
+          }
+          if (haystack[key].constructor === Object) {
+            // || haystack[key].isArray
+            search(haystack[key]);
+            if (found) break;
+          }
+          path.pop();
+        }
+      }
+
+      search(obj);
+      return path[path.length - 2];
+      /*
+      Or alternately if you want to keep mixed return
+      return found ? path : false;
+      */
+    }
+
+    console.log(getPath(theCobWeb, "glasses"));
+
+    function findPath(primitive, object, path = []) {
+      for (const [key, value] of Object.entries(object)) {
+        if (value === primitive) {
+          // return [...path, key];
+          // return [path[path.length - 1]];
+          return path
+        }
+        if (typeof value === 'object' || typeof value === 'function') {
+          const newPath = findPath(primitive, value, [...path, key]);
+          if (newPath) {
+            return newPath;
+          }
+        }
+      }
+      return null;
+    }
+
+    console.log(findPath("paperclip", theCobWeb));
 
   </script>
 

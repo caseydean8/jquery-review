@@ -63,8 +63,8 @@
     // "I found my headphones!"
     console.log(`I found my ${theCobWeb.biggestWeb.biggerWeb.smallerWeb.tinyWeb.items[3]}`)
     // "I found my homework!"
-    console.log(theCobWeb.biggestWeb);
-    console.log(Object.values(theCobWeb));
+    // console.log(theCobWeb.biggestWeb);
+    // console.log(Object.values(theCobWeb));
 
     // Bonus (Extra Hard): It's impossible to complete this in the allotted time. Take this home as a challenge and bring it back to your TA/Instructor for the solution.
     // Create a function using JavaScript (NOT jQuery) for which you can pass the name of an item and theCobWeb
@@ -75,6 +75,7 @@
     //    toenails it should give back tinyWeb
     //    headphones it should give back otherBigWeb
     // HINT: you should use recursion
+    
     function smallestWeb(item, obj) {
 
       for (let k in obj) {
@@ -101,7 +102,7 @@
       }
     }
 
-    printAllVals("comb", theCobWeb);
+    // printAllVals("comb", theCobWeb);
 
     // Recursive factorial finder
 
@@ -123,16 +124,18 @@
       }
       var path = [];
       var found = false;
+      var lastObject
 
       function search(haystack) {
         for (var key in haystack) {
           path.push(key);
+          // console.log(`path Array: ${path}`)
           if (haystack[key] === value) {
             found = true;
             break;
           }
-          if (haystack[key].constructor === Object) {
-            // || haystack[key].isArray
+          if (typeof haystack[key] === "object") {
+            // console.log(haystack[key]);
             search(haystack[key]);
             if (found) break;
           }
@@ -141,23 +144,41 @@
       }
 
       search(obj);
-      return path[path.length - 2];
+      // return path;
+      for (let i = 0; i < path.length; i++) {
+        if (path[i] === "item" || path[i] === "items"){
+          lastObject = path[i - 1];
+        }
+      }
+      return lastObject;
+
+      // findNum();
       /*
       Or alternately if you want to keep mixed return
       return found ? path : false;
       */
     }
-
+    console.log("==============================")
+    console.log("biggest web----------------")
+    console.log(getPath(theCobWeb, "comb"));
+    console.log("bigger web----------------")
     console.log(getPath(theCobWeb, "glasses"));
+    console.log("smaller web----------------")
+    console.log(getPath(theCobWeb, "toothbrush"));
+    console.log("tiny web----------------")
+    console.log(getPath(theCobWeb, "lint"));
+    console.log("other big web----------------")
+    console.log(getPath(theCobWeb, "headphones"));
 
+    // Function below from: https://www.reddit.com/r/javascript/comments/5f4q49/find_path_to_primitives_in_deepnested_object/
     function findPath(primitive, object, path = []) {
       for (const [key, value] of Object.entries(object)) {
-        if (value === primitive) {
-          // return [...path, key];
-          // return [path[path.length - 1]];
-          return path
+        if (value === primitive && typeof key !== "object") {
+          // console.log([...path, key])
+          return [...path, key];
         }
-        if (typeof value === 'object' || typeof value === 'function') {
+
+        if (typeof value === 'object' && typeof value !== "string") {
           const newPath = findPath(primitive, value, [...path, key]);
           if (newPath) {
             return newPath;
@@ -167,7 +188,6 @@
       return null;
     }
 
-    console.log(findPath("paperclip", theCobWeb));
 
   </script>
 

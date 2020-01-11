@@ -62,9 +62,9 @@
         <div class="card">
           <h3 class="card-header">Result</h3>
           <div class="card-body">
-            <h1 id="first-number"></h1>
-            <h1 id="operator"></h1>
-            <h1 id="second-number"></h1>
+            <h1 id="first-number">fist</h1>
+            <h1 id="operator">bump </h1>
+            <h1 id="second-number">mama</h1>
             <hr>
             <h1 id="result"></h1>
           </div>
@@ -76,10 +76,15 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
-
+  const valueArray = [];
 // Your code here...
-$(".button").click(function(){
-  (".first-number").html(value);
+$(".btn").click(function(event){
+  // console.log(clicked);
+  let value = $(this).val();
+  // const valueArray = [];
+  valueArray.push(value);
+  console.log(valueArray);
+  $("#first-number").html(valueArray);
 })
   
 

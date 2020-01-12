@@ -79,10 +79,11 @@
 
     $(document).ready(function () {
       const valueArray = [];
-      // const operatorArray = [];
+      let operatorValue;
       const value2Arr = [];
-      value2 = false;
-      operator = false;
+      let value2 = false;
+      let operator = false;
+      let result;
       // let value = $(this).val();
 
       // Your code here...
@@ -95,7 +96,7 @@
           console.log(valueArray);
           $("#first-number").html(valueArray);
         } else if (value !== "equals" && value !== "clear" && value.length > 1) {
-          // operatorArray.push(value);
+          operatorValue = value;
           $("#operator").html(value);
           value2 = true;
           operator = true;
@@ -103,7 +104,36 @@
           value2Arr.push(value);
           $("#second-number").html(value2Arr);
         } else if (value === "equals") {
-          
+          let firstVal = valueArray.join('');
+          let secondVal = value2Arr.join('');
+          console.log(firstVal);
+          console.log(secondVal);
+          console.log(operatorValue);
+          switch (operatorValue) {
+            case "plus":
+              result = firstVal + secondVal;
+              break;
+
+            case "minus":
+              result = firstVal - secondVal;
+              break;
+
+            case "times":
+              result = firstVal * secondVal;
+              break;
+
+            case "power":
+              result = firstVal ^ secondVal;
+              break;
+
+            default:
+              result = firstVal / secondVal;
+
+          }
+          $("#result").html(result);
+
+        } else {
+          $(".card-body").empty();
         }
       });
 

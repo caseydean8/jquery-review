@@ -79,8 +79,10 @@
 
     $(document).ready(function () {
       const valueArray = [];
-      const operatorArray = [];
+      // const operatorArray = [];
       const value2Arr = [];
+      value2 = false;
+      operator = false;
       // let value = $(this).val();
 
       // Your code here...
@@ -88,13 +90,20 @@
         // console.log(clicked);
         let value = $(this).val();
         console.log(value);
-        if (value.length === 1 && value2Arr.length === 0) {
+        if (value.length === 1 && value2 === false) {
           valueArray.push(value);
           console.log(valueArray);
           $("#first-number").html(valueArray);
-        } else if (value !== "equals" && value !== "clear"){
-
+        } else if (value !== "equals" && value !== "clear" && value.length > 1) {
+          // operatorArray.push(value);
           $("#operator").html(value);
+          value2 = true;
+          operator = true;
+        } else if (value2 && operator && value.length === 1) {
+          value2Arr.push(value);
+          $("#second-number").html(value2Arr);
+        } else if (value === "equals") {
+          
         }
       });
 

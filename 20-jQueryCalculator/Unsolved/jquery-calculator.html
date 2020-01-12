@@ -63,10 +63,10 @@
       <div class="col-lg-6">
         <div class="card">
           <h3 class="card-header">Result</h3>
-          <div class="card-body">
-            <h1 id="first-number">fist</h1>
-            <h1 id="operator">bump </h1>
-            <h1 id="second-number">mama</h1>
+          <div class="card-body clear-me">
+            <h1 id="first-number"></h1>
+            <h1 id="operator"></h1>
+            <h1 id="second-number"></h1>
             <hr>
             <h1 id="result"></h1>
           </div>
@@ -78,13 +78,12 @@
   <script type="text/javascript">
 
     $(document).ready(function () {
-      const valueArray = [];
+      let valueArray = [];
       let operatorValue;
-      const value2Arr = [];
+      let value2Arr = [];
       let value2 = false;
       let operator = false;
       let result;
-      // let value = $(this).val();
 
       // Your code here...
       $(".btn").click(function (event) {
@@ -133,7 +132,14 @@
           $("#result").html(result);
 
         } else {
-          $(".card-body").empty();
+          $("#first-number").empty();
+          $("#operator").empty();
+          $("#second-number").empty();
+          $("#result").empty();
+          valueArray = [];
+          value2Arr = [];
+          value2 = false;
+          operator = false;
         }
       });
 
